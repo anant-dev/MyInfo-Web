@@ -103,7 +103,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <input id="zipcode" type="number" class="validate"  name="p_zip">
-                        <label for="xipcode">Zipcode</label>
+                        <label for="zipcode">Zipcode</label>
                     </div>
                 </div>
                 <br>

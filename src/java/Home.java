@@ -139,7 +139,7 @@ public class Home extends HttpServlet {
                     + "<div class=\"row\">\n"
                     + " 	<div class=\"input-field col s12\">");
             out.println("<input id=\"email\" type=\"email\" class=\"validate\" name=\"email\" disabled value=\"" + emaildb + "\">"
-                    + "<input id=\"email\" type=\"hidden\" class=\"validate\" name=\"mail\" value=\"" + emaildb + "\">");
+                    + "<input id=\"mail\" type=\"hidden\" class=\"validate\" name=\"mail\" value=\"" + emaildb + "\">");
             out.println("<label for=\"email\">Email</label>\n"
                     + "	</div>\n"
                     + "	</div>\n"
@@ -223,7 +223,8 @@ public class Home extends HttpServlet {
                     + "						<div class=\"row\">\n"
                     + "							<div class=\"input-field col s12\">"
                     + "<input id=\"status\" type=\"hidden\" class=\"validate\" name=\"status\" value=\"" + address_status + "\">");
-            out.println("<input id=\"address\" type=\"text\" class=\"validate\" name=\"p_add\" disabled value=\"" + p_add + "\">");
+            out.println("<input id=\"address\" type=\"text\" class=\"validate\" name=\"p_add\" disabled value=\"" + p_add + "\">"
+                    + "<input id=\"mail\" type=\"hidden\" class=\"validate\" name=\"mail\" value=\"" + emaildb + "\">");
             out.println("<label for=\"address\">Address</label>\n"
                     + "							</div>\n"
                     + "						</div>\n"
@@ -248,7 +249,7 @@ public class Home extends HttpServlet {
                     + "						<div class=\"row\">\n"
                     + "							<div class=\"input-field col s12\">");
             out.println("<input id=\"zipcode\" type=\"number\" class=\"validate\"  name=\"p_zip\" disabled value=\"" + p_zip + "\">");
-            out.println("<label for=\"xipcode\">Zipcode</label>\n"
+            out.println("<label for=\"zipcode\">Zipcode</label>\n"
                     + "							</div>\n"
                     + "						</div>\n"
                     + "						<br>");
@@ -393,13 +394,12 @@ public class Home extends HttpServlet {
             int gaming = rsi.getInt("gaming");
             int cooking = rsi.getInt("cooking");
             out.println("<div class=\"card-panel z-depth-2\" style=\"padding: 20px 80px 20px 80px\">\n"
-                    + "					<h4 class=\"light-blue-text text-darken-4 center\"><b>User Interest</b></h4><br>\n"
-                    + "					<form class=\"col s12\" method=\"post\" action=\"signup\">\n"
-                    + "						<div style=\"padding: 20px 0px 20px 30%\">\n"
-                    + "							<form class=\"col s12\">\n"
-                    + "								<div class=\"row\">\n"
+                    + "     <h4 class=\"light-blue-text text-darken-4 center\"><b>User Interest</b></h4><br>\n"
+                    + "     <div style=\"padding: 20px 0px 20px 30%\">\n"
+                    + "     <form class=\"col s12\" method=\"post\" action=\"updateuserint\">\n"
+                    + "			<div class=\"row\">\n"
                     + "									<div class=\"input-field col s12  \">");
-            out.println("");
+            out.println("<input id=\"mail\" type=\"hidden\" class=\"validate\" name=\"mail\" value=\"" + emaildb + "\">");
             out.println("");
             if (sports == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"sports\" name=\"sports\" disabled checked/>");
@@ -407,27 +407,27 @@ public class Home extends HttpServlet {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"sports\" name=\"sports\" disabled />");
             }
             out.println("<label for=\"sports\">Sports</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "	</div>\n"
+                    + "	</div>\n"
+                    + " <div class=\"row\">\n"
+                    + "		<div class=\"input-field col s12  \">");
             if (reading == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"reading\" name=\"reading\" disabled checked/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"reading\" name=\"reading\" disabled/>");
             }
             out.println("<label for=\"reading\">Reading</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "	</div>\n"
+                    + "		</div>\n"
+                    + "		<div class=\"row\">\n"
+                    + "		<div class=\"input-field col s12  \">");
             if (computer == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"computer\" name=\"computer\" disabled/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"computer\" name=\"computer\" disabled/>");
             }
             out.println("<label for=\"computer\">Computer and Software</label>\n"
-                    + "									</div>\n"
+                    + "	</div>\n"
                     + "								</div>\n"
                     + "								<div class=\"row\">\n"
                     + "									<div class=\"input-field col s12  \">");
@@ -437,80 +437,80 @@ public class Home extends HttpServlet {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"songs\" name=\"songs\" disabled/>");
             }
             out.println("<label for=\"songs\">Songs</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "</div>\n"
+                    + "	</div>\n"
+                    + "	<div class=\"row\">\n"
+                    + "	<div class=\"input-field col s12  \">");
             if (dance == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"dance\" name=\"dance\"  disabled checked/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"dance\" name=\"dance\"  disabled/>");
             }
             out.println("<label for=\"dance\">Dance</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "</div>\n"
+                    + "	</div>\n"
+                    + "<div class=\"row\">\n"
+                    + "	<div class=\"input-field col s12  \">");
             if (photography == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"photography\" name=\"photography\"  disabled checked/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"photography\" name=\"photography\"  disabled/>");
             }
             out.println("<label for=\"photography\">Photography</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "	</div>\n"
+                    + "	</div>\n"
+                    + "	<div class=\"row\">\n"
+                    + "	<div class=\"input-field col s12  \">");
             if (fashion == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"fashion\" name=\"fashion\"  disabled checked/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"fashion\" name=\"fashion\"  disabled/>");
             }
             out.println("<label for=\"fashion\">Fashion</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "</div>\n"
+                    + "	</div>\n"
+                    + "	<div class=\"row\">\n"
+                    + "	<div class=\"input-field col s12  \">");
             if (painting == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"painting\" name=\"painting\"  disabled checked/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"painting\" name=\"painting\"  disabled/>");
             }
             out.println("<label for=\"painting\">Painting</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "</div>\n"
+                    + "	</div>\n"
+                    + "	<div class=\"row\">\n"
+                    + "<div class=\"input-field col s12  \">");
             if (traveling == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"traveling\" name=\"traveling\"  disabled checked/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"traveling\" name=\"traveling\"  disabled/>");
             }
             out.println("<label for=\"traveling\">Traveling</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "	</div>\n"
+                    + "	</div>\n"
+                    + "	<div class=\"row\">\n"
+                    + "<div class=\"input-field col s12  \">");
             if (writing == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"writing\" name=\"writing\"  disabled checked/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"writing\" name=\"writing\"  disabled/>");
             }
             out.println("<label for=\"writing\">Writing</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "	</div>\n"
+                    + "	</div>\n"
+                    + "	<div class=\"row\">\n"
+                    + "	<div class=\"input-field col s12  \">");
             if (gaming == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"gaming\" name=\"gaming\"  disabled checked/>");
             } else {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"gaming\" name=\"gaming\"  disabled/>");
             }
             out.println("<label for=\"gaming\">Gaming</label>\n"
-                    + "									</div>\n"
-                    + "								</div>\n"
-                    + "								<div class=\"row\">\n"
-                    + "									<div class=\"input-field col s12  \">");
+                    + "	</div>\n"
+                    + "	</div>\n"
+                    + "	<div class=\"row\">\n"
+                    + "		<div class=\"input-field col s12  \">");
             if (cooking == 1) {
                 out.println("<input type=\"checkbox\" class=\"filled-in\" id=\"cooking\" name=\"cooking\"  disabled checked/>");
             } else {
@@ -520,22 +520,22 @@ public class Home extends HttpServlet {
                     + "									</div>\n"
                     + "								</div>  \n"
                     + "							</div>			 \n"
-                    + "							<div class=\"center\" style=\"display: none;\" id=\"save_int\">\n"
-                    + "								<button class=\"btn waves-effect waves-light light-blue darken-4 z-depth-2\" type=\"submit\"  name=\"action\" style=\"margin-left: 30px;\">Save\n"
-                    + "									<i class=\"fa fa-fighter-jet right\" aria-hidden=\"true\"></i>\n"
-                    + "								</button>\n"
-                    + "							</div>\n"
-                    + "						</form> 		\n"
+                    + "	<div class=\"center\" style=\"display: none;\" id=\"save_int\">\n"
+                    + "	<button class=\"btn waves-effect waves-light light-blue darken-4 z-depth-2\" type=\"submit\"  name=\"action\" style=\"margin-left: 30px;\">Save\n"
+                    + "		<i class=\"fa fa-fighter-jet right\" aria-hidden=\"true\"></i>\n"
+                    + "	</button>\n"
+                    + "	</div>\n"
+                    + "	</form> 		\n"
                     + "						 \n"
-                    + "						<div class=\"row\">\n"
-                    + "							<div class=\"center\" id=\"edit_int\">\n"
-                    + "								<button class=\"btn waves-effect waves-light light-blue darken-4 z-depth-2\"  id=\"edit_int\" name=\"action\" onclick=\"showSaveInt()\"  style=\"margin-left: 30px\">Edit\n"
-                    + "									<i class=\"fa fa-pencil right\" aria-hidden=\"true\"></i>\n"
-                    + "								</button>\n"
-                    + "							</div>\n"
+                    + "	<div class=\"row\">\n"
+                    + "	<div class=\"center\" id=\"edit_int\">\n"
+                    + " <button class=\"btn waves-effect waves-light light-blue darken-4 z-depth-2\"  id=\"edit_int\" name=\"action\" onclick=\"showSaveInt()\"  style=\"margin-left: 30px\">Edit\n"
+                    + "		<i class=\"fa fa-pencil right\" aria-hidden=\"true\"></i>\n"
+                    + "		</button>\n"
+                    + "		</div>\n"
                     + "\n"
-                    + "						</div>\n"
-                    + "					</div>   ");
+                    + "	</div>\n"
+                    + "</div>   ");
 
             //Main div closed below
             out.println("</div>   	\n"

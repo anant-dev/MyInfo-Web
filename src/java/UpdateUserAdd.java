@@ -41,6 +41,7 @@ public class UpdateUserAdd extends HttpServlet {
         String p_country = request.getParameter("p_country");
         int p_zip = Integer.parseInt(request.getParameter("p_zip"));
         String address_same = request.getParameter("address_same");
+        String address_status=request.getParameter("status");
         String a_add="", a_city="", a_state="", a_country="";
         int a_zip=0;
         int i,j=0;
@@ -55,15 +56,26 @@ public class UpdateUserAdd extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root", "mindfire");
-            PreparedStatement ps = con.prepareStatement("insert into permanent_add values(?,?,?,?,?,?)");
-            ps.setString(1, email);
-            ps.setString(2, p_add);
-            ps.setString(3, p_city);
-            ps.setString(4, p_state);
-            ps.setString(5, p_country);
-            ps.setInt(6, p_zip);
+            PreparedStatement ps = con.prepareStatement("UPDATE permanent_add SET address=?,city=?,state=?,country=?,zipcode=? WHERE email=?");
+            ps.setString(1, p_add);
+            ps.setString(2, p_city);
+            ps.setString(3, p_state);
+            ps.setString(4, p_country);
+            ps.setInt(5, p_zip);
+             ps.setString(6, email);
             i=ps.executeUpdate();
             if (address_same == null) {
+              if(address_status.equals("notsame")){
+                PreparedStatement psa = con.prepareStatement("UPDATE current_add SET address=?,city=?,state=?,country=?,zipcode=? WHERE email=?");
+                psa.setString(1, email);
+                psa.setString(2, a_add);
+                psa.setString(3, a_city);
+                psa.setString(4, a_state);
+                psa.setString(5, a_country);
+                psa.setInt(6, a_zip);
+                j=psa.executeUpdate();
+              }
+              if(address_status.equals("same")){
                 PreparedStatement psa = con.prepareStatement("insert into current_add values(?,?,?,?,?,?)");
                 psa.setString(1, email);
                 psa.setString(2, a_add);
@@ -72,6 +84,10 @@ public class UpdateUserAdd extends HttpServlet {
                 psa.setString(5, a_country);
                 psa.setInt(6, a_zip);
                 j=psa.executeUpdate();
+              }
+               PreparedStatement psaa = con.prepareStatement("UPDATE test.userdetails SET address_status = 'notsame' WHERE email=?");
+                psaa.setString(1, email);
+                psaa.executeUpdate();
             }
             else{
                 PreparedStatement psa = con.prepareStatement("UPDATE test.userdetails SET address_status = 'same' WHERE email=?");
@@ -79,11 +95,11 @@ public class UpdateUserAdd extends HttpServlet {
                 j=psa.executeUpdate();
             }
             if (i > 0 && j>0) {
-             RequestDispatcher rs = request.getRequestDispatcher("userinterest.jsp");
+             RequestDispatcher rs = request.getRequestDispatcher("updatesuccess.html");
                 rs.include(request, response);
             }
             else{
-                RequestDispatcher rs = request.getRequestDispatcher("signupunsuccess.html");
+                RequestDispatcher rs = request.getRequestDispatcher("updateunsuccess.html");
                 rs.include(request, response);
             }
 
