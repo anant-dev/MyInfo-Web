@@ -33,8 +33,6 @@ public class Admin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String email = request.getParameter("email");
-        String pass = request.getParameter("pass");
         PrintWriter out = response.getWriter();
         out.println("<!DOCTYPE html>\n"
                 + "\n"
@@ -168,8 +166,9 @@ public class Admin extends HttpServlet {
                     + "			    clear: 'Clear',\n"
                     + "			    close: 'Ok',\n"
                     + "			    closeOnSelect: false // Close upon selecting a date,\n"
-                    + "			  });\n"
-                    + "	    </script>\n"
+                    + "			  });\n");
+            
+            out.println("	    </script>\n"
                     + "    </body>\n"
                     + "    </html>");
 

@@ -36,6 +36,7 @@ public class UserInfo extends HttpServlet {
         String email = request.getParameter("uid");
         String info = request.getParameter("info");
         PrintWriter out = response.getWriter();
+        //out.println("rr"+email);
         out.println("<!DOCTYPE html>\n"
                 + "\n"
                 + "    <head>\n"
@@ -135,6 +136,7 @@ public class UserInfo extends HttpServlet {
             String gender = rs.getString("gender");
             String dob = rs.getString("dob");
             String address_status = rs.getString("address_status");
+            int status = rs.getInt("status");
 
             //Display values
             out.println("<h5 class=\"light-blue-text text-darken-4 \"><b>First Name:</b> " + first + " </h5>");
@@ -146,10 +148,18 @@ public class UserInfo extends HttpServlet {
             out.println("<h5 class=\"light-blue-text text-darken-4 \"><b>Last Name:</b> " + last + " </h5>");
             out.println("</div>\n"
                     + "</div>");
-            out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Email :</b>  " + emaildb + " </h5>");
+            out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Email :</b>  " + emaildb + " </h5>"
+                    + "<input id=\"mail\" type=\"hidden\" class=\"validate\" name=\"mail\" value=\"" + emaildb + "\">");
             out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Contact Number :</b> " + contact + "</h5>");
             out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Gender :</b>  " + gender + "</h5>");
             out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Date of Birth (Birthday) :</b>  " + dob + "</h5>");
+            if (status == 1) {
+                out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Status :</b> Active  </h5><br>");
+            } else if (status == 2) {
+                out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Status :</b> Admin  </h5><br>");
+            } else {
+                out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Status :</b> Deactive  </h5><br>");
+            }
             out.println(" </div>\n"
                     + "	</div> "); // userinfo card closed
 
@@ -190,8 +200,8 @@ public class UserInfo extends HttpServlet {
                 out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Country :</b> " + a_country + "</h5>");
                 out.println("<h5 class=\"light-blue-text text-darken-4\"> <b>Zipcode :</b> " + a_zip + "</h5> <br>");
             }
-            out.println("</div>\n" +
-"			    </div>"); // user address card closed
+            out.println("</div>\n"
+                    + "			    </div>"); // user address card closed
             //USER Address
             out.println("<div class=\"card-panel z-depth-2\" style=\"padding:  20px 0px 30px 0px\">\n"
                     + "				    <h4 class=\"light-blue-text text-darken-4 center\"><b>User Interest</b></h4><br>\n"
@@ -254,15 +264,15 @@ public class UserInfo extends HttpServlet {
             out.println("</div>\n"
                     + "	<br>\n"
                     + "	<div class=\"row\">\n"
-                    + "		<form class=\"col s6\">\n"
-                    + "			<div class=\"right\">\n"
+                    + "		<form class=\"col s6\" method=\"post\" action=\"activateaccount?uid="+email+"\" >\n"
+                    + "			<div class=\"right\" id=\"activate\">\n"
                     + "			<button class=\"btn waves-effect waves-light light-blue darken-4 z-depth-2\" type=\"submit\" name=\"action\" style=\"margin-left: 30px\">Activate\n"
                     + "			<i class=\"fa fa-heartbeat right\" aria-hidden=\"true\"></i>\n"
                     + "			</button>\n"
                     + "			</div>\n"
                     + "		</form>\n"
-                    + "		<form class=\"col s6\">\n"
-                    + "			<div class=\"left\">\n"
+                    + "		<form class=\"col s6\" method=\"post\" action=\"deactivateaccount?uid="+email+"\" >\n"
+                    + "			<div class=\"left\" id=\"deactivate\">\n"
                     + "			<button class=\"btn waves-effect waves-light light-blue darken-4 z-depth-2\" type=\"submit\" name=\"action\" style=\"margin-left: 30px\">Deactivate\n"
                     + "			<i class=\"fa fa-bomb right\" aria-hidden=\"true\"></i>\n"
                     + "			</button>\n"
@@ -292,6 +302,7 @@ public class UserInfo extends HttpServlet {
                     + "			    close: 'Ok',\n"
                     + "			    closeOnSelect: false // Close upon selecting a date,\n"
                     + "			  });\n"
+                     
                     + "	    </script>\n"
                     + "    </body>\n"
                     + "    </html>");
