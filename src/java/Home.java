@@ -86,7 +86,6 @@ public class Home extends HttpServlet {
                 + "				<div class=\"nav-wrapper container\">\n"
                 + "					<a href=\"#\" class=\"brand-logo \"><img src=\"logo.png\" class=\"center\" height=\"50\" style=\"margin: 5%\"></a>\n"
                 + "					<ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">\n"
-                + "						<li><a href=\"index.html\">Logout</a></li>\n"
                 + "						<li><a href=\"about.html\">About</a></li>\n"
                 + "					</ul>\n"
                 + "				</div>\n"
@@ -166,7 +165,7 @@ public class Home extends HttpServlet {
             out.println("<label for=\"female\">Female</label>\n"
                     + "	</div>\n"
                     + "	<div class=\"input-field col s3\">");
-            if (gender.equals("female")) {
+            if (gender.equals("others")) {
                 out.println("<input class=\"with-gap\" name=\"gender\" type=\"radio\" id=\"others\" value=\"others\" disabled checked/>");
             } else {
                 out.println("<input class=\"with-gap\" name=\"gender\" type=\"radio\" id=\"others\" value=\"others\" disabled />");
@@ -624,6 +623,7 @@ public class Home extends HttpServlet {
         } catch (Exception se) {
             se.printStackTrace();
         }
+        
 
-    }
-}
+    }//method close
+}// class

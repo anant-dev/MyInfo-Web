@@ -60,7 +60,6 @@
         <div class="nav-wrapper container">
             <a href="#" class="brand-logo "><img src="logo.png" class="center" height="50" style="margin: 5%"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="signup.html">SignUp</a></li>
                 <li><a href="index.html">Login</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>

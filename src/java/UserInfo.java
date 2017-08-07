@@ -102,7 +102,6 @@ public class UserInfo extends HttpServlet {
                 + "	        <div class=\"nav-wrapper container\">\n"
                 + "	          <a href=\"#\" class=\"brand-logo \"><img src=\"logo.png\" class=\"center\" height=\"50\" style=\"margin: 5%\"></a>\n"
                 + "	          <ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">\n"
-                + "	            <li><a href=\"index.html\">Logout</a></li>\n"
                 + "	            <li><a href=\"about.html\">About</a></li>\n"
                 + "	          </ul>\n"
                 + "	        </div>\n"
@@ -262,8 +261,9 @@ public class UserInfo extends HttpServlet {
             }
 
             out.println("</div>\n"
-                    + "	<br>\n"
-                    + "	<div class=\"row\">\n"
+                    + "	<br>\n");
+            if(status == 1){
+            out.println( "	<div class=\"row\">\n"
                     + "		<form class=\"col s6\" method=\"post\" action=\"activateaccount?uid="+email+"\" >\n"
                     + "			<div class=\"right\" id=\"activate\">\n"
                     + "			<button class=\"btn waves-effect waves-light light-blue darken-4 z-depth-2\" type=\"submit\" name=\"action\" style=\"margin-left: 30px\">Activate\n"
@@ -278,10 +278,10 @@ public class UserInfo extends HttpServlet {
                     + "			</button>\n"
                     + "			</div>\n"
                     + "		</form>\n"
-                    + "	</div>\n"
-                    + "	</div>   	");
+                    + "	</div>\n");
+            }
             // FOOTER
-            out.println("</div>\n"
+            out.println("</div> </div>\n"
                     + "    	 <footer class=\"page-footer light-blue darken-4\">\n"
                     + "          <div class=\"footer-copyright\">\n"
                     + "            <div class=\"container\">\n"

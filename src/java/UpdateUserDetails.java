@@ -46,7 +46,7 @@ public class UpdateUserDetails extends HttpServlet {
         String email = request.getParameter("mail");
         String gender = request.getParameter("gender");
         String contact = request.getParameter("contact");
-        out.println("data "+first+middle+last+"---email"+email+" gender"+gender+"contact"+contact);
+        //out.println("data "+first+middle+last+"---email"+email+" gender"+gender+"contact"+contact);
         //String dob = request.getParameter("dob");
         // Date of birth formatted
 //        DateFormat format = new SimpleDateFormat("dd MMMMM, yyyy");

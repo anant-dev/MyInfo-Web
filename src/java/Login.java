@@ -27,15 +27,20 @@ public class Login extends HttpServlet {
         if(status == 1)
         {
             RequestDispatcher rs = request.getRequestDispatcher("Home");
-            rs.forward(request, response);
+            rs.forward(request, response);   
         }
         else if(status == 2){
             RequestDispatcher rs = request.getRequestDispatcher("Admin");
             rs.forward(request, response);
         }
+        else if(status == 0){
+           out.println("<script> alert(\"Your Account has been Deactivated\");</script>");
+           RequestDispatcher rs = request.getRequestDispatcher("index.html");
+           rs.include(request, response);
+        }
         else
         {
-           out.println("Username or Password incorrect");
+           out.println("<script> alert(\"Username or Password incorrect\");</script>");
            RequestDispatcher rs = request.getRequestDispatcher("index.html");
            rs.include(request, response);
         }

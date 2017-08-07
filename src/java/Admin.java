@@ -96,7 +96,6 @@ public class Admin extends HttpServlet {
                 + "	        <div class=\"nav-wrapper container\">\n"
                 + "	          <a href=\"#\" class=\"brand-logo \"><img src=\"logo.png\" class=\"center\" height=\"50\" style=\"margin: 5%\"></a>\n"
                 + "	          <ul id=\"nav-mobile\" class=\"right hide-on-med-and-down\">\n"
-                + "	            <li><a href=\"index.html\">Logout</a></li>\n"
                 + "	            <li><a href=\"about.html\">About</a></li>\n"
                 + "	          </ul>\n"
                 + "	        </div>\n"

@@ -42,6 +42,7 @@ public class UpdateUserAdd extends HttpServlet {
         int p_zip = Integer.parseInt(request.getParameter("p_zip"));
         String address_same = request.getParameter("address_same");
         String address_status=request.getParameter("status");
+        //out.println(email+"--"+address_same+"--"+address_status);
         String a_add="", a_city="", a_state="", a_country="";
         int a_zip=0;
         int i,j=0;
@@ -62,17 +63,17 @@ public class UpdateUserAdd extends HttpServlet {
             ps.setString(3, p_state);
             ps.setString(4, p_country);
             ps.setInt(5, p_zip);
-             ps.setString(6, email);
+            ps.setString(6, email);
             i=ps.executeUpdate();
             if (address_same == null) {
               if(address_status.equals("notsame")){
                 PreparedStatement psa = con.prepareStatement("UPDATE current_add SET address=?,city=?,state=?,country=?,zipcode=? WHERE email=?");
-                psa.setString(1, email);
-                psa.setString(2, a_add);
-                psa.setString(3, a_city);
-                psa.setString(4, a_state);
-                psa.setString(5, a_country);
-                psa.setInt(6, a_zip);
+                psa.setString(1, a_add);
+                psa.setString(2, a_city);
+                psa.setString(3, a_state);
+                psa.setString(4, a_country);
+                psa.setInt(5, a_zip);
+                psa.setString(6, email);
                 j=psa.executeUpdate();
               }
               if(address_status.equals("same")){
@@ -90,6 +91,11 @@ public class UpdateUserAdd extends HttpServlet {
                 psaa.executeUpdate();
             }
             else{
+                if(address_status.equals("notsame")){
+                PreparedStatement psaaa = con.prepareStatement("DELETE FROM current_add WHERE email=?");
+                psaaa.setString(1, email);
+                psaaa.executeUpdate();
+                } 
                 PreparedStatement psa = con.prepareStatement("UPDATE test.userdetails SET address_status = 'same' WHERE email=?");
                 psa.setString(1, email);
                 j=psa.executeUpdate();
