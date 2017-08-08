@@ -263,7 +263,7 @@ public class UserInfo extends HttpServlet {
 
             out.println("</div>\n"
                     + "	<br>\n");
-            if(status == 1){
+            if(status != 3){
             out.println( "	<div class=\"row\">\n"
                     + "		<form class=\"col s6\" method=\"post\" action=\"activateaccount?uid="+email+"\" >\n"
                     + "			<div class=\"right\" id=\"activate\">\n"

@@ -22,6 +22,9 @@ public class Home extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String email = request.getParameter("email");
+        if(email.equals("")){
+            email= (String)request.getAttribute("mail");
+        }
         String pass = request.getParameter("pass");
         PrintWriter out = response.getWriter();
         out.println("		<!DOCTYPE html>\n"

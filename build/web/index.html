@@ -55,18 +55,25 @@
     <div class="container" style="padding-left: 200px; padding-right: 200px">
 
         <div class="card-panel z-depth-2" style="padding: 20px 80px 20px 80px">
-            <form class="col s12"  method="post" action="login">
+            <form class="col s12"  method="post" action="login" name="login_form" onsubmit="return validateForm()">
                 <h4 class="light-blue-text text-darken-4 center"><b>LOGIN</b></h4><br>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="email" type="email" name="email" class="validate">
-                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" class="validate active">
+                        <label for="email" data-error="Invalid_emailid">Email</label>
+                    </div>
+                </div>
+                <h5 class="light-blue-text text-darken-4 center"><b>OR</b></h5>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="contact" type="number" name="contact" class="validate active" data-length="10">
+                        <label for="contact" data-error="Contact number should be of 10 digits">Contact Number</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="password" type="password" name='pass' class="validate">
-                        <label for="password">Password</label>
+                        <input id="password" type="password" name='pass' class="validate active" data-length="12">
+                        <label for="password"  data-error="Password should be less then 12 characters ">Password *</label>
                     </div>
                 </div>
                 <div class="center">
@@ -97,6 +104,25 @@
          document.getElementById("signup").onclick = function () {
         window.location.href = 'signup.html';
         };
+        function validateForm() {
+			var email = document.forms["login_form"]["email"].value;
+			var contact = document.forms["login_form"]["contact"].value;
+			var password = document.forms["login_form"]["pass"].value;
+			if (email == "" && contact == "" ) {
+				Materialize.toast('Please Enter email or contaact', 4000)
+				return false;
+			}
+			else{
+				if(contact.length != 10 && contact!=""){
+				Materialize.toast('Please Enter valid contact number', 4000)
+				return false;
+				}
+				if( password.length > 12 || password.length < 4 ){
+					Materialize.toast('Password should have 4 - 12 characters', 4000)
+					return false;
+				}
+			}
+		}
     </script>
 </body>
 </html>
