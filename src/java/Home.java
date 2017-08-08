@@ -30,6 +30,7 @@ public class Home extends HttpServlet {
                 + "			<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n"
                 + "			<link rel=\"stylesheet\" type=\"text/css\" href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css\">\n"
                 + "			<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\n"
+                + "                     <link rel=\"shortcut icon\" href=\"favicon.ico\" type=\"image/x-icon\">"
                 + "			<style>\n"
                 + "				#banner {\n"
                 + "					width: 100%;\n"
